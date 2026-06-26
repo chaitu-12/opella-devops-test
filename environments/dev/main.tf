@@ -141,7 +141,7 @@ module "vm" {
 
   vm_name = "vm-${var.environment}"
 
-  vm_size = "Standard_B2s"
+  vm_size = "Standard_DS1_v2"
 
   admin_username = "azureuser"
 
