@@ -275,4 +275,42 @@ Potential enhancements include:
 - Azure Bastion
 - Automated Terraform Tests
 
+# Architecture
+
+                        GitHub Repository
+                               │
+                               ▼
+                        Jenkins Pipeline
+                               │
+          ┌────────────────────┼────────────────────┐
+          │                    │                    │
+          ▼                    ▼                    ▼
+    terraform fmt      terraform validate      tfsec/TFLint
+                               │
+                               ▼
+                       terraform plan
+                               │
+                               ▼
+                       Manual Approval
+                               │
+                               ▼
+                       terraform apply
+                               │
+                               ▼
+                        Azure Subscription
+                               │
+                 ┌─────────────┴─────────────┐
+                 │                           │
+          Resource Group (rg-dev)            │
+                 │                           │
+        ┌────────┴─────────┐                 │
+        │                  │                 │
+      VNet             Storage Account       │
+        │                  │                 │
+   ┌────┴────┐             │                 │
+   │         │             │                 │
+ VM Subnet  App Subnet   Blob Container      │
+   │
+   │
+ Linux VM
 ---
